@@ -1,0 +1,661 @@
+\documentclass[12pt,letterpaper]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+
+
+% For theorems which do not start with a line break
+\makeatletter
+\newenvironment{theorem}
+{\textbf{Theorem.}}{\par}
+\makeatother
+
+
+% Include graphics in answer
+\newcommand{\imageans}[1]
+{%
+    \begin{minipage}[t]{\linewidth}
+        \raggedright
+        \adjustbox{valign=t}{\includegraphics[width=.6\linewidth]{#1}}
+    \end{minipage}
+}
+
+% Absolute value
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\rightmark}
+\fancyhead[L]{2 - Quantificational Logic}
+\renewcommand{\headrulewidth}{0pt}
+
+%\chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE How To Prove It\\
+    \LARGE Chapter 04 - Summary \& Exercises\\[0.5em]
+    \large Math 2155\\[0.5em]
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\setcounter{section}{3}
+
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{}
+\subsection{Existence and Uniqueness Proofs}
+
+\begin{questions}
+    
+    \setcounter{question}{0}
+
+    \question
+    \begin{theorem}
+        $\forall x \exists y \left( x^2 y = x-y \right)$
+    \end{theorem}
+    \begin{proof}
+        Let $x$ be an arbitrary real number, and suppose $y = \frac{x}{x^2 +1}$\\
+        \left( Existence \right) Substitute in the new value of y into the first equation and verify. \\
+        \left( Uniqueness \right) Suppose z satisfied the constraints. For this, z must equal y. Hence done. \\
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b \in \mathbb{R}$. If $a < b < 0$, then $a^2 > b^2$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $a < b < 0$. Then $\abs a > \abs b$. 
+        Multiplying the inequality by $\abs a$ gives $a^2 > ab$.
+        Multiplying the inequality by $\abs b$ gives $ab > b^2$.
+        Therefore, $a^2 > ab > b^2$, so $a^2 > b^2$, as required.
+        Thus, if $a < b < 0$ then $a^2 > b^2$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b \in \mathbb{R}$. If $0 < a < b$, then $\frac{1}{b} < \frac{1}{a}$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $0 < a < b$. 
+        Multiplying the inequality by $\frac{1}{ab}$ gives $\frac{1}{b} < \frac{1}{a}$, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a \in \mathbb{R}$. If $a^3 > a$ then $a^5 > a$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $a^3 > a$. Then $a^3 - a > 0$. 
+        Multiplying the inequality by $a^2 + 1$ gives
+        \begin{align*}
+            & (a^3 - a)(a^2 + 1) > 0 \\
+            & \implies a^5 - a^3 + a^3 - a > 0 \\
+            & \implies a^5 - a > 0
+        \end{align*}
+        Thus we have $a^5 > a$, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $A \setminus B \subseteq B \cap D$ and $x \in A$. If $x \not\in D$ then $x \in B$.
+    \end{theorem}
+    \begin{proof}
+        From $A \setminus B \subseteq B \cap D$ we have
+        $\forall y(y \in A \land y \not\in B \rightarrow y \in C \land y \in D)$.
+        Suppose $y = x$ and $x \not\in D$. 
+        Then, $x \in C \land x \not\in D$ is false which implies $x \in A \land x \not\in B$ is false.
+        Since $x \in A$, $x \in A$ is true and so $x \in B$ must be false, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b \in \mathbb{R}$. If $a < b$ then $\frac{a+b}{2} < b$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $a < b$. 
+        Adding $b$ to the inequality gives $a + b < 2b$. 
+        Dividing the inequality by 2 gives $\frac{a+b}{2} < b$, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $x \in \mathbb{R}$ and $x \neq 0$. If $\frac{\sqrt[3]{x}+5}{x^2+6} = \frac{1}{x}$ then $x \neq 8$.
+    \end{theorem}
+    \begin{proof}
+        We prove the contrapositive. 
+        Suppose $x = 8$. 
+        Then, $\frac{\sqrt[3]{x}+5}{x^2+6} = \frac{7}{70} = \frac{1}{10} \neq \frac{1}{x} = \frac{1}{8}$.
+        Therefore, if $\frac{\sqrt[3]{x}+5}{x^2+6} = \frac{1}{x}$ then $x \neq 8$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b, c, d \in \mathbb{R}$, $0 < a < b$, and $d > 0$. If $ac \geq bd$ then $c > d$.
+    \end{theorem}
+    \begin{proof}
+        We prove the contrapositive.
+        Suppose $c \leq d$. Then, multiplying this inequality by $a$ gives $ac \leq ad$.
+        Also, multiplying the inequality by $b$ gives $bc \leq bd$. 
+        Since $a < b$, $ac < bc \leq bd$ and $ac < bd$.
+        Therefore, if $ac \geq bd$ then $c > d$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b, c, d \in \mathbb{R}$, $0 < a < b$, and $d > 0$. If $ac \geq bd$ then $c > d$.
+    \end{theorem}
+    \begin{proof}
+        We prove the contrapositive.
+        Suppose $c \leq d$. Then, multiplying this inequality by $a$ gives $ac \leq ad$.
+        Also, multiplying the inequality by $b$ gives $bc \leq bd$. 
+        Since $a < b$, $ac < bc \leq bd$ and $ac < bd$.
+        Therefore, if $ac \geq bd$ then $c > d$.
+    \end{proof}
+\end{questions}
+
+\subsection{Proofs involving Negations and Conditionals}
+
+\begin{questions}
+    \question
+    \begin{parts}
+        \part
+        \begin{proof}
+            Suppose $P$. Then, since $P \rightarrow Q$ it follows that $Q$. 
+            And, since $Q \rightarrow R$, it follows that $R$. Thus, $P \rightarrow R$.
+        \end{proof}
+        \part
+        \begin{proof}
+            Suppose $P$ and $Q$. From the contrapositive of $\neg R \rightarrow (P \rightarrow \neg Q)$, 
+            we have $\neg (P \rightarrow \neg Q) \rightarrow R$.
+            Since $P$ and $Q$, it follows that because $\neg (P \rightarrow \neg Q)$, we have $R$.
+            Thus, $P \rightarrow (Q \rightarrow R)$.
+        \end{proof}
+    \end{parts}
+
+    \question
+    \begin{parts}
+        \part
+        \begin{proof}
+            Suppose $P$. 
+            Then, from $P \rightarrow Q$ we have $Q$ 
+            and from the contrapositive $Q \rightarrow \neg R$ we have $\neg R$.
+            Thus, $P \rightarrow \neg R$.
+        \end{proof}
+        \part
+        \begin{proof}
+            Suppose $Q$.
+            Then, since $P$, it follows that $\neg(Q \rightarrow \neg P)$.
+            Thus, $Q \rightarrow \neg(Q \rightarrow \neg P)$.
+        \end{proof}
+    \end{parts}
+
+    \question
+    \begin{proof}
+        Suppose $x \in A$. 
+        Since $A \subseteq C$, we have that $x \in C$.
+        Also, since $B \cap C = \emptyset$, $x \not\in B$.
+        Thus, $x \in A \rightarrow x \not\in B$.
+    \end{proof}
+
+    \setcounter{question}{5}
+
+    \question
+    \begin{proof}
+        Suppose $a \not\in C$.
+        Since $a \in A$ and $A \subseteq B$, it follows that $a \in B$.
+        Then, it follows that $a \in B \setminus C$.
+        However, this contradicts the given $a \not\in B \setminus C$.
+        Therefore, $a \in C$.
+    \end{proof}
+
+\end{questions}
+
+\subsection{Proofs Involving Quantifiers}
+\begin{questions}
+    \question
+    \begin{proof}
+        Suppose $\exists x(P(x) \rightarrow Q(x))$. 
+        Then, we can choose $x_0$ such that $P(x_0) \rightarrow Q(x_0)$.
+        Suppose also that $\forall xP(x) \rightarrow \exists x Q(x)$.
+        In particular, we have $P(x_0) \rightarrow Q(x_0)$.
+        Since $x_0$ is a value for $x$ for which $Q(x_0)$ holds, $\exists xQ(x)$, as required.
+    \end{proof}
+
+    \setcounter{question}{2}
+
+    \question
+    \begin{proof}
+        Suppose $x \in A$ and $A \subseteq B \setminus C$.
+        Then, $x \in B$ and $x \not\in C$.
+        But, since $x$ is arbitrary, $\forall x(x \in A \rightarrow x \not\in C)$,
+        or $A \cap C = \emptyset$, as required.
+    \end{proof}
+
+    \setcounter{question}{6}
+    \question
+    \begin{proof}
+        Suppose $x > 2$. Let $y = \frac{x + \sqrt{x^2 - 4}}{2}$ which is defined since $x > 2$.
+        Then,
+        \begin{align*}
+            y + \frac{1}{y} &= \frac{x + \sqrt{x^2 - 4}}{2} + \frac{2}{x + \sqrt{x^2 - 4}} \\
+            &= \frac{(x + \sqrt{x^2 - 4})^2 + 4}{2(x + \sqrt{x^2 - 4})} \\
+            &= x
+        \end{align*}
+    \end{proof}
+
+    \setcounter{question}{8}
+    \question
+    \begin{proof}
+        Suppose $x \in \cap \mathcal{F}$ and $A \in \mathcal{F}$.
+        Since $x \in \cap \mathcal{F}$, $x$ belongs to all the sets in $\mathcal{F}$, including $A$.
+        It follows that $x \in A$.
+        Thus, $x \in \cap \mathcal{F} \rightarrow x \in A$.
+    \end{proof}
+
+    \setcounter{question}{11}
+    \question
+    \begin{proof}
+        Suppose $\mathcal{F} \subseteq \mathcal{G}$.
+        Let $x \in \cup \mathcal{F}$ and $A \in \mathcal{G}$.
+        Since $x \in \cup \mathcal{F}$, there exists a set $B \in \mathcal{F}$ such that $x \in B$.
+        Also, since $\mathcal{F} \subseteq \mathcal{G}$, $B \in \mathcal{G}$.
+        It follows that $x \in \cup \mathcal G$.
+        Since $x$ is arbitrary, $\cup \mathcal F \subseteq \mathcal G$, as required. 
+    \end{proof}
+
+    \setcounter{question}{13}
+    \question
+    \begin{proof}
+        Suppose $X \in \cup_{i \in I} \mathscr{P}(A_i)$.
+        Suppose $X \in \mathscr{P}(A_j)$, where $j \in I$. 
+        Since $X \in \mathscr{P}(A_j)$, $X \subseteq A_j$.
+        It follows that $X \subseteq \cup_{i \in I} A_i$.
+        Thus, $X \in \mathscr P(\cup_{i \in I} A_i)$.
+        Since $X$ is arbitrary,  $\cup_{i \in I} \mathscr{P}(A_i) \subseteq \mathscr P(\cup_{i \in I} A_i)$, as required.
+    \end{proof}
+
+    \setcounter{question}{16}
+    \question
+    \begin{proof}
+        Suppose $x \in \cup \mathcal F$.
+            Then, there exists $A \in \mathcal F$ where $x \in A$.
+            Suppose $B \in \mathcal G$.
+                Then, $A \subseteq B$ as given.
+                It follows that $x \in B$.
+            Since $B$ is arbitrary, $x \in \cap \mathcal G$.
+        Since $x$ is arbitrary, $\cup \mathcal F \subseteq \cap \mathcal G$.
+    \end{proof}
+
+    \setcounter{question}{19}
+    \question
+    The original goal of the proof is to prove $\forall x \in \mathbb R (x^2 \geq 0)$.
+    The proof is by contradiction.
+    However, the goal is incorrectly negated as $\forall x \in \mathbb R (x^2 < 0)$,
+    when it should be $\exists x \in \mathbb R (x^2 < 0)$ (note the change in quantifier).
+
+    \setcounter{question}{21}
+    \question
+    A correct proof must be valid for arbitrary values of $y$ from a given value of $x$.
+    However, the given proof defines $x$ in terms of $y$, meaning that the choice of $y$ is no
+    longer arbitrary once the value of $x$ is assigned.
+
+    \setcounter{question}{24}
+    \question
+    \begin{proof}
+        Suppose $x \in \mathbb R$.
+            Let $y = 2x$ and $z \in \mathbb R$. Then,
+            \begin{align*}
+                (x+z)^2 - (x^2+z^2) &= x^2 + 2xz + z^2 - x^2 - z^2 \\
+                &= 2xz \\
+                &= yz
+            \end{align*}
+    \end{proof}
+
+\end{questions}
+\end{document}
+\documentclass[12pt,letterpaper]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+
+
+% For theorems which do not start with a line break
+\makeatletter
+\newenvironment{theorem}
+{\textbf{Theorem.}}{\par}
+\makeatother
+
+
+% Include graphics in answer
+\newcommand{\imageans}[1]
+{%
+    \begin{minipage}[t]{\linewidth}
+        \raggedright
+        \adjustbox{valign=t}{\includegraphics[width=.6\linewidth]{#1}}
+    \end{minipage}
+}
+
+% Absolute value
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\rightmark}
+\fancyhead[L]{2 - Quantificational Logic}
+\renewcommand{\headrulewidth}{0pt}
+
+%\chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE How To Prove It\\
+    \LARGE Exercises 3: Proofs\\[0.5em]
+    \large Math 2155\\[0.5em]
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\setcounter{section}{3}
+
+\subsection{Proof Strategies}
+
+\begin{questions}
+    \question
+    \begin{parts}
+        \part \textbf{Hypotheses}: $n \in \mathbb{N}(n > 1) \land n \text{ is not prime}$. \newline
+              \textbf{Conclusion}: $2^n-1 \text{ is not prime.}$\newline
+              The theorem tells us that $2^6-1$ is not prime. Since $2^n - 1 = 63$ and $63 = 9 \cdot 7$, the theorem holds for this instance.
+        \part $2^11 - 1 = 32767$, which is not prime, since $32767 = 151 \cdot 217$.
+        \part The theorem tells us nothing because $11$ is not prime.
+    \end{parts}
+
+    \setcounter{question}{3}
+
+    \question
+    \begin{theorem}
+        If $0 < a < b$ then $a^2 < b^2.$
+    \end{theorem}
+    \begin{proof}
+        Suppose $0 < a < b$. Then $b - a > 0$. 
+        Multiplying the inequality by $(b + a)$ gives $(b - a)(b + a) = b^2 - a^2 > 0$.
+        Since $b^2 - a^2 > 0$, it follows that $a^2 < b^2$. 
+        Therefore if $0 < a < b$ then $a^2 < b^2$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b \in \mathbb{R}$. If $a < b < 0$, then $a^2 > b^2$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $a < b < 0$. Then $\abs a > \abs b$. 
+        Multiplying the inequality by $\abs a$ gives $a^2 > ab$.
+        Multiplying the inequality by $\abs b$ gives $ab > b^2$.
+        Therefore, $a^2 > ab > b^2$, so $a^2 > b^2$, as required.
+        Thus, if $a < b < 0$ then $a^2 > b^2$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b \in \mathbb{R}$. If $0 < a < b$, then $\frac{1}{b} < \frac{1}{a}$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $0 < a < b$. 
+        Multiplying the inequality by $\frac{1}{ab}$ gives $\frac{1}{b} < \frac{1}{a}$, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a \in \mathbb{R}$. If $a^3 > a$ then $a^5 > a$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $a^3 > a$. Then $a^3 - a > 0$. 
+        Multiplying the inequality by $a^2 + 1$ gives
+        \begin{align*}
+            & (a^3 - a)(a^2 + 1) > 0 \\
+            & \implies a^5 - a^3 + a^3 - a > 0 \\
+            & \implies a^5 - a > 0
+        \end{align*}
+        Thus we have $a^5 > a$, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $A \setminus B \subseteq B \cap D$ and $x \in A$. If $x \not\in D$ then $x \in B$.
+    \end{theorem}
+    \begin{proof}
+        From $A \setminus B \subseteq B \cap D$ we have
+        $\forall y(y \in A \land y \not\in B \rightarrow y \in C \land y \in D)$.
+        Suppose $y = x$ and $x \not\in D$. 
+        Then, $x \in C \land x \not\in D$ is false which implies $x \in A \land x \not\in B$ is false.
+        Since $x \in A$, $x \in A$ is true and so $x \in B$ must be false, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b \in \mathbb{R}$. If $a < b$ then $\frac{a+b}{2} < b$.
+    \end{theorem}
+    \begin{proof}
+        Suppose $a < b$. 
+        Adding $b$ to the inequality gives $a + b < 2b$. 
+        Dividing the inequality by 2 gives $\frac{a+b}{2} < b$, as required.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $x \in \mathbb{R}$ and $x \neq 0$. If $\frac{\sqrt[3]{x}+5}{x^2+6} = \frac{1}{x}$ then $x \neq 8$.
+    \end{theorem}
+    \begin{proof}
+        We prove the contrapositive. 
+        Suppose $x = 8$. 
+        Then, $\frac{\sqrt[3]{x}+5}{x^2+6} = \frac{7}{70} = \frac{1}{10} \neq \frac{1}{x} = \frac{1}{8}$.
+        Therefore, if $\frac{\sqrt[3]{x}+5}{x^2+6} = \frac{1}{x}$ then $x \neq 8$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b, c, d \in \mathbb{R}$, $0 < a < b$, and $d > 0$. If $ac \geq bd$ then $c > d$.
+    \end{theorem}
+    \begin{proof}
+        We prove the contrapositive.
+        Suppose $c \leq d$. Then, multiplying this inequality by $a$ gives $ac \leq ad$.
+        Also, multiplying the inequality by $b$ gives $bc \leq bd$. 
+        Since $a < b$, $ac < bc \leq bd$ and $ac < bd$.
+        Therefore, if $ac \geq bd$ then $c > d$.
+    \end{proof}
+
+    \question
+    \begin{theorem}
+        Let $a, b, c, d \in \mathbb{R}$, $0 < a < b$, and $d > 0$. If $ac \geq bd$ then $c > d$.
+    \end{theorem}
+    \begin{proof}
+        We prove the contrapositive.
+        Suppose $c \leq d$. Then, multiplying this inequality by $a$ gives $ac \leq ad$.
+        Also, multiplying the inequality by $b$ gives $bc \leq bd$. 
+        Since $a < b$, $ac < bc \leq bd$ and $ac < bd$.
+        Therefore, if $ac \geq bd$ then $c > d$.
+    \end{proof}
+\end{questions}
+
+\subsection{Proofs involving Negations and Conditionals}
+
+\begin{questions}
+    \question
+    \begin{parts}
+        \part
+        \begin{proof}
+            Suppose $P$. Then, since $P \rightarrow Q$ it follows that $Q$. 
+            And, since $Q \rightarrow R$, it follows that $R$. Thus, $P \rightarrow R$.
+        \end{proof}
+        \part
+        \begin{proof}
+            Suppose $P$ and $Q$. From the contrapositive of $\neg R \rightarrow (P \rightarrow \neg Q)$, 
+            we have $\neg (P \rightarrow \neg Q) \rightarrow R$.
+            Since $P$ and $Q$, it follows that because $\neg (P \rightarrow \neg Q)$, we have $R$.
+            Thus, $P \rightarrow (Q \rightarrow R)$.
+        \end{proof}
+    \end{parts}
+
+    \question
+    \begin{parts}
+        \part
+        \begin{proof}
+            Suppose $P$. 
+            Then, from $P \rightarrow Q$ we have $Q$ 
+            and from the contrapositive $Q \rightarrow \neg R$ we have $\neg R$.
+            Thus, $P \rightarrow \neg R$.
+        \end{proof}
+        \part
+        \begin{proof}
+            Suppose $Q$.
+            Then, since $P$, it follows that $\neg(Q \rightarrow \neg P)$.
+            Thus, $Q \rightarrow \neg(Q \rightarrow \neg P)$.
+        \end{proof}
+    \end{parts}
+
+    \question
+    \begin{proof}
+        Suppose $x \in A$. 
+        Since $A \subseteq C$, we have that $x \in C$.
+        Also, since $B \cap C = \emptyset$, $x \not\in B$.
+        Thus, $x \in A \rightarrow x \not\in B$.
+    \end{proof}
+
+    \setcounter{question}{5}
+
+    \question
+    \begin{proof}
+        Suppose $a \not\in C$.
+        Since $a \in A$ and $A \subseteq B$, it follows that $a \in B$.
+        Then, it follows that $a \in B \setminus C$.
+        However, this contradicts the given $a \not\in B \setminus C$.
+        Therefore, $a \in C$.
+    \end{proof}
+
+\end{questions}
+
+\subsection{Proofs Involving Quantifiers}
+\begin{questions}
+    \question
+    \begin{proof}
+        Suppose $\exists x(P(x) \rightarrow Q(x))$. 
+        Then, we can choose $x_0$ such that $P(x_0) \rightarrow Q(x_0)$.
+        Suppose also that $\forall xP(x) \rightarrow \exists x Q(x)$.
+        In particular, we have $P(x_0) \rightarrow Q(x_0)$.
+        Since $x_0$ is a value for $x$ for which $Q(x_0)$ holds, $\exists xQ(x)$, as required.
+    \end{proof}
+
+    \setcounter{question}{2}
+
+    \question
+    \begin{proof}
+        Suppose $x \in A$ and $A \subseteq B \setminus C$.
+        Then, $x \in B$ and $x \not\in C$.
+        But, since $x$ is arbitrary, $\forall x(x \in A \rightarrow x \not\in C)$,
+        or $A \cap C = \emptyset$, as required.
+    \end{proof}
+
+    \setcounter{question}{6}
+    \question
+    \begin{proof}
+        Suppose $x > 2$. Let $y = \frac{x + \sqrt{x^2 - 4}}{2}$ which is defined since $x > 2$.
+        Then,
+        \begin{align*}
+            y + \frac{1}{y} &= \frac{x + \sqrt{x^2 - 4}}{2} + \frac{2}{x + \sqrt{x^2 - 4}} \\
+            &= \frac{(x + \sqrt{x^2 - 4})^2 + 4}{2(x + \sqrt{x^2 - 4})} \\
+            &= x
+        \end{align*}
+    \end{proof}
+
+    \setcounter{question}{8}
+    \question
+    \begin{proof}
+        Suppose $x \in \cap \mathcal{F}$ and $A \in \mathcal{F}$.
+        Since $x \in \cap \mathcal{F}$, $x$ belongs to all the sets in $\mathcal{F}$, including $A$.
+        It follows that $x \in A$.
+        Thus, $x \in \cap \mathcal{F} \rightarrow x \in A$.
+    \end{proof}
+
+    \setcounter{question}{11}
+    \question
+    \begin{proof}
+        Suppose $\mathcal{F} \subseteq \mathcal{G}$.
+        Let $x \in \cup \mathcal{F}$ and $A \in \mathcal{G}$.
+        Since $x \in \cup \mathcal{F}$, there exists a set $B \in \mathcal{F}$ such that $x \in B$.
+        Also, since $\mathcal{F} \subseteq \mathcal{G}$, $B \in \mathcal{G}$.
+        It follows that $x \in \cup \mathcal G$.
+        Since $x$ is arbitrary, $\cup \mathcal F \subseteq \mathcal G$, as required. 
+    \end{proof}
+
+    \setcounter{question}{13}
+    \question
+    \begin{proof}
+        Suppose $X \in \cup_{i \in I} \mathscr{P}(A_i)$.
+        Suppose $X \in \mathscr{P}(A_j)$, where $j \in I$. 
+        Since $X \in \mathscr{P}(A_j)$, $X \subseteq A_j$.
+        It follows that $X \subseteq \cup_{i \in I} A_i$.
+        Thus, $X \in \mathscr P(\cup_{i \in I} A_i)$.
+        Since $X$ is arbitrary,  $\cup_{i \in I} \mathscr{P}(A_i) \subseteq \mathscr P(\cup_{i \in I} A_i)$, as required.
+    \end{proof}
+
+    \setcounter{question}{16}
+    \question
+    \begin{proof}
+        Suppose $x \in \cup \mathcal F$.
+            Then, there exists $A \in \mathcal F$ where $x \in A$.
+            Suppose $B \in \mathcal G$.
+                Then, $A \subseteq B$ as given.
+                It follows that $x \in B$.
+            Since $B$ is arbitrary, $x \in \cap \mathcal G$.
+        Since $x$ is arbitrary, $\cup \mathcal F \subseteq \cap \mathcal G$.
+    \end{proof}
+
+    \setcounter{question}{19}
+    \question
+    The original goal of the proof is to prove $\forall x \in \mathbb R (x^2 \geq 0)$.
+    The proof is by contradiction.
+    However, the goal is incorrectly negated as $\forall x \in \mathbb R (x^2 < 0)$,
+    when it should be $\exists x \in \mathbb R (x^2 < 0)$ (note the change in quantifier).
+
+    \setcounter{question}{21}
+    \question
+    A correct proof must be valid for arbitrary values of $y$ from a given value of $x$.
+    However, the given proof defines $x$ in terms of $y$, meaning that the choice of $y$ is no
+    longer arbitrary once the value of $x$ is assigned.
+
+    \setcounter{question}{24}
+    \question
+    \begin{proof}
+        Suppose $x \in \mathbb R$.
+            Let $y = 2x$ and $z \in \mathbb R$. Then,
+            \begin{align*}
+                (x+z)^2 - (x^2+z^2) &= x^2 + 2xz + z^2 - x^2 - z^2 \\
+                &= 2xz \\
+                &= yz
+            \end{align*}
+    \end{proof}
+
+\end{questions}
+\end{document}
